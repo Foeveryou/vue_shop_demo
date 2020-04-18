@@ -6,6 +6,7 @@
       <el-breadcrumb-item>权限管理</el-breadcrumb-item>
       <el-breadcrumb-item>角色列表</el-breadcrumb-item>
     </el-breadcrumb>
+
     <!-- 卡片视图 -->
     <el-card>
       <!-- 添加角色按钮区域 -->
@@ -14,6 +15,7 @@
           <el-button type="primary">添加角色</el-button>
         </el-col>
       </el-row>
+
       <!-- 角色列表区域 -->
       <el-table :data="rolelist" border stripe>
         <!-- 展开列 -->
@@ -34,11 +36,12 @@
                     <i class="el-icon-caret-right"></i>
                   </el-col>
                   <el-col :span="18">
-                    <el-tag type="warning" v-for="(item3) in item2.children" :key="item3.id" closable @close="removeRightById(scope.row, item3.id)">{{item3.authName}}</el-tag>
+                    <el-tag type="warning" v-for="(item3, i3) in item2.children" :key="item3.id" closable @close="removeRightById(scope.row, item3.id)">{{item3.authName}}</el-tag>
                   </el-col>
                 </el-row>
               </el-col>
             </el-row>
+
             <!-- <pre>
               {{scope.row}}
             </pre> -->
@@ -57,6 +60,7 @@
         </el-table-column>
       </el-table>
     </el-card>
+
     <!-- 分配权限的对话框 -->
     <el-dialog title="分配权限" :visible.sync="setRightDialogVisible" width="50%" @close="setRightDialogClosed">
       <!-- 树形控件 -->
@@ -68,6 +72,7 @@
     </el-dialog>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -110,7 +115,8 @@ export default {
       // 弹框提示用户是否要删除
       const confirmResult = await this.$confirm(
         '此操作将永久删除该文件, 是否继续?',
-        '提示', {
+        '提示',
+        {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -174,7 +180,8 @@ export default {
       const idStr = keys.join(',')
 
       const { data: res } = await this.$http.post(
-        `roles/${this.roleId}/rights`, { rids: idStr }
+        `roles/${this.roleId}/rights`,
+        { rids: idStr }
       )
 
       if (res.meta.status !== 200) {
@@ -187,8 +194,8 @@ export default {
     }
   }
 }
-
 </script>
+
 <style lang="less" scoped>
 .el-tag {
   margin: 7px;
@@ -206,5 +213,4 @@ export default {
   display: flex;
   align-items: center;
 }
-
 </style>

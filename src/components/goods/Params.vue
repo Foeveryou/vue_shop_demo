@@ -37,8 +37,8 @@
             <el-table-column label="参数名称" prop="attr_name"></el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditDialog(scope.row.attrId)">编辑</el-button>
-                <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeParams(scope.row.attrId)">删除</el-button>
+                <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditDialog(scope.row.attr_id)">编辑</el-button>
+                <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeParams(scope.row.attr_id)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -56,8 +56,8 @@
             <el-table-column label="属性名称" prop="attr_name"></el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditDialog(scope.row.attrId)">编辑</el-button>
-                <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeParams(scope.row.attrId)">删除</el-button>
+                <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditDialog(scope.row.attr_id)">编辑</el-button>
+                <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeParams(scope.row.attr_id)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -243,7 +243,7 @@ export default {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return
         const { data: res } = await this.$http.put(
-          `categories/${this.cateId}/attributes/${this.editForm.attrId}`,
+          `categories/${this.cateId}/attributes/${this.editForm.attr_id}`,
           { attr_name: this.editForm.attr_name, attr_sel: this.activeName }
         )
 
